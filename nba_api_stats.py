@@ -1,4 +1,3 @@
-# https://github.com/swar/nba_api
 from datetime import timezone
 from nba_api.stats.endpoints import playercareerstats
 from nba_api.live.nba.endpoints import scoreboard
@@ -34,6 +33,10 @@ def get_data(df_all_players, player_id):
     df_player = career.get_data_frames()[0]
     player_name = df_all_players[df_all_players['id'] == int(player_id)]['full_name'].item()
     df_player['PLAYER_NAME'] = player_name
+    df_player = df_player.drop_duplicates()
+    df_player = df_player[df_player['LEAGUE_ID'] == 0]
+    print("." * 50)
+    print(f"DATA FROM PLAYER {player_name} - {player_id}")
     print(df_player)
     file_name = 'datasets/nba_player.csv'
     df_player.to_csv(file_name, mode='a')
@@ -81,8 +84,18 @@ def nba_live_data():
         box = boxscore.BoxScore(game['gameId'])
         box_dict = box.game.get_dict()
         print(box_dict)
-# ######################################################
 
+
+# ###########################################################
+# MAIN
+# ###########################################################
+
+# Data from:
+# https://github.com/swar/nba_api
 
 df = get_players()
-get_data(df, '203999')
+file_name = 'datasets/nba_player_names.csv'
+df.to_csv(file_name, mode='a')
+
+for index, row in df.iterrows():
+    get_data(df, row['id'])

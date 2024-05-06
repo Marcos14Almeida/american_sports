@@ -302,4 +302,8 @@ def save_nba_details():
     df.to_csv('datasets/nba_details.csv', index=False)
 
 
+# ###########################################################
+# MAIN
+# ###########################################################
+
 save_nba_details()

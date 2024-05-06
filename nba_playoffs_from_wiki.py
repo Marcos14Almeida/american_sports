@@ -163,5 +163,9 @@ def get_playoffs(year):
         print("Failed to retrieve the webpage. Status code:", response.status_code)
 
 
-for year in range(2012, 2013):
+# ###########################################################
+# MAIN
+# ###########################################################
+
+for year in range(2000, 2005):
     get_playoffs(year)

@@ -233,4 +233,8 @@ def save_nfl_details():
     df.to_csv('datasets/nfl_details.csv', index=False)
 
 
+# ###########################################################
+# MAIN
+# ###########################################################
+
 save_nfl_details()

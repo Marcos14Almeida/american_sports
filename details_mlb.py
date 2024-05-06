@@ -207,4 +207,8 @@ def save_mlb_details():
     df.to_csv('datasets/mlb_details.csv', index=False)
 
 
+# ###########################################################
+# MAIN
+# ###########################################################
+
 save_mlb_details()
